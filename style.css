@@ -1,0 +1,92 @@
+body{
+	background-color: #EEE;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+a{
+	text-decoration: none;
+}
+
+input[type=number]{
+    width: 60px;
+} 
+
+label{
+	font-size: 70%;
+}
+
+#datafields input[type=number]{
+    width: 60px;
+} 
+
+#datafields table{
+	display: inline-block;
+}
+
+input[disabled] {
+    background-color: #EEE;
+    border-color: darkgrey;
+}
+
+#container{
+	background-color: white;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header{
+	background-color: #66CCFF;
+	text-align: center;
+	padding: 10px;
+}
+
+#content{
+	padding: 10px 10px 10px 10px;
+}
+
+#nav{
+	width: 180px;
+	float: left;
+	font-size: 90%;
+}
+
+#nav .selected{
+	font-weight: bold;
+}
+
+#nav ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+#main{
+	width: 600px;
+	float: right;
+	overflow-x: auto;
+	
+}
+
+table, tbody, td {
+	border: 1px solid black;
+	text-align: left;
+	border-collapse: collapse;
+	white-space: nowrap;
+}
+
+td {
+	padding: 5px;
+}
+
+th{
+	text-align: center;
+	padding: 5px;
+}
+
+#footer{
+	clear: both;
+	padding: 10px;
+	background-color: #999999;
+	color: white;
+	text-align: right;
+}

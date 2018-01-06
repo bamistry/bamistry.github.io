@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Endpoint Dilution Assay</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type='text/javascript'>
+        function addFields(){
+
+            var FieldSize = 3;
+            // Number of inputs to create
+            var dmin = document.getElementById("dmin").value;
+            var dmax = document.getElementById("dmax").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("datafields");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+
+            //Table Method 
+            var datatable = document.createElement("TABLE");
+            var row = datatable.insertRow(-1);
+
+            //Header row
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = "";
+            row.appendChild(headerCell);
+            headerCell = document.createElement("TH");
+            headerCell.innerHTML = "# of Successes";
+            row.appendChild(headerCell);
+            headerCell = document.createElement("TH");
+            headerCell.innerHTML = "# of Trials";
+            row.appendChild(headerCell); 
+
+            
+            for(d = dmin; d<=dmax; d++){
+                row = datatable.insertRow(-1);
+
+                //First column
+                var cell = row.insertCell(-1);
+                cell.innerHTML = "Dil. #" + d;
+
+                cell = row.insertCell(-1);
+                var input = document.createElement("input");
+                input.type = "number";
+                input.name = "E_" + d;
+                input.id = "E_" + d;
+                input.size = FieldSize;
+                cell.appendChild(input);
+
+                cell = row.insertCell(-1);
+                input = document.createElement("input");
+                input.type = "number";
+                input.name = "T_" + d;
+                input.id = "T_" + d;
+                input.size = FieldSize;
+                cell.appendChild(input);
+
+                /*for(d=dmin; d<=dmax; d++){
+                    cell = row.insertCell(-1);
+                    var minicontainer = document.createElement("div");
+
+                    var input = document.createElement("input");
+                    input.type = "number";
+                    input.name = "P_" + d + "_" + t;
+                    input.id = "P_" + d + "_" + t;
+                    input.size = FieldSize;
+                    //cell.appendChild(input);
+
+                    var checkcountable = document.createElement("input");
+                    checkcountable.type = "checkbox";
+                    checkcountable.name = "Check_" + d + "_" + t;
+                    checkcountable.id = "Check_" + d + "_" + t;
+                    checkcountable.setAttribute("onclick", "javascript: uncountableDisable(" + d + "," + t + ");");
+                    //checkcountable.onclick = function(){input.disabled = checkcountable.status};
+                    //checkcountable.value = "Uncountable";
+
+                    var label = document.createElement("label");
+                    label.innerHTML = "NC";
+                    label.for = "Check_" + d + "_" + t;
+
+                    minicontainer.appendChild(input);
+                    minicontainer.appendChild(document.createElement("br"));
+                    minicontainer.appendChild(checkcountable);
+                    minicontainer.appendChild(label);
+
+                    cell.appendChild(minicontainer);
+
+                }*/
+
+                
+            }
+            container.appendChild(datatable);
+        }
+
+        function uncountableDisable( d, t ){
+            var status = document.getElementById("Check_" + d + "_" + t).checked;
+            var field = document.getElementById("P_" + d + "_" + t);
+
+            field.disabled = status;
+            field.value = null;
+        }
+
+        function updateFields(){
+          if( (document.getElementById("dmin").value < 0) || (document.getElementById("dmax").value < 0)){
+            alert("Error: Only positive entries allowed.");
+          }
+          else if( document.getElementById("dmin").value > document.getElementById("dmax").value ){
+            alert("Error: Maximum dilution may not be lower than the minimum.");
+          }
+          else if(confirm("All data fields will be erased. Is this okay?")){
+              addFields();
+            }
+        }
+
+    </script>
+</head
+<body>
+  <div id="container">
+    <div id="header">
+      <h1>Endpoint Dilution Assay</h1>
+    </div>
+    <div id="content">
+      <div id = "nav">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="plaque.html">Plaque Assay</a></li>
+          <li><a class="selected" href="endpoint.html">Endpoint Dilution Assay</a></li>
+          <li><a href="luciferase.html">Luciferase Reporter Assay</a></li>
+        </ul>
+      </div>
+
+      <div id = "main">
+        <table>
+          <tr>
+            <td>
+              Particle to PFU Ratio
+            </td>
+            <td>
+              <input type="number" id="PtoPFU" name="PtoPFU" value="1" size=8 min=0>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Dilution Factor
+            </td>
+            <td>
+              <form>
+                <input type="radio" id="logdilution" name="Dfactor" onclick="getElementById('Dfactor').disabled = true" checked>Log Dilution (10-fold)<br />
+                <input type="radio" id="halflogdilution" name="Dfactor" onclick="getElementById('Dfactor').disabled = true">Half Log Dilution (10<sup>1/2</sup>-fold)<br />
+                <input type="radio" id="quarterlogdilution" name="Dfactor" onclick="getElementById('Dfactor').disabled = true">Quarter Log Dilution (10<sup>1/4</sup>-fold)<br />
+                <input type="radio" id="otherdilution" name="Dfactor" onclick="getElementById('Dfactor').disabled = false">Other Dilution
+                <input type="number" id="Dfactor" name="Dfactor" value="10" size=8 min=0 disabled>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Minimum Dilution Number
+            </td>
+            <td>
+              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Maximum Dilution Number
+            </td>
+            <td>
+              <input type="number" id="dmax" name="dmax" value="5" size=8 min=0>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" id="updatefields" name="updatefields" value="Update Fields" onclick="updateFields()">
+        <br />
+        <br />
+        <div id="datafields"></div>
+        <br />
+        <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">
+        <p id="answer"></p>
+      </div>
+    </div>
+    <div id="footer">
+      Contact: bamistry at ucla dot edu
+    </div>
+  </div>
+
+    <script type="text/javascript">
+      addFields();
+    </script>
+
+    <script type="text/javascript">
+      function calculateN0(){
+        
+            var Q = document.getElementById("PtoPFU").value;
+            var D = document.getElementById("Dfactor").value;
+            if (document.getElementById("logdilution").checked){
+              D = 10;
+            }
+            else if(document.getElementById("halflogdilution").checked){
+              D = Math.pow(10,0.5);
+            }
+            else if(document.getElementById("quarterlogdilution").checked){
+              D = Math.pow(10,0.25);
+            }
+            var dmin = document.getElementById("dmin").value;
+            var dmax = document.getElementById("dmax").value;  
+
+            if((Q < 0) || (D < 0) || (dmin < 0) || (dmax < 0)){
+              alert("Error: Only positive entries allowed.");
+              return;
+            }
+            else if (Q < 1){
+              alert("Error: The particle to PFU ratio must be at least 1.");
+              return;
+            }
+            else if (D <= 1){
+              alert("Error: The dilution factor must be greater than 1.");
+              return;
+            }
+
+
+            var tempbool = false;
+
+            var E = [];
+            var T = [];         
+            for(d = dmin; d<=dmax; d++){
+                E[d-dmin] = Number(document.getElementById("E_" + d).value);
+                T[d-dmin] = Number(document.getElementById("T_" + d).value);
+                if((E[d-dmin] < 0) || (T[d-dmin] < 0)){
+                  alert("Error: Only positive entries allowed.");
+                  return;
+                }
+                else if(E[d-dmin] > T[d-dmin]){
+                  alert("Error: Number of successes cannot be greater than number of trials.")
+                }
+                tempbool = tempbool || (document.getElementById("E_" + d).value != "");
+             }
+
+            if(!tempbool){
+              alert("Error: No data provided.");
+              return;
+            }
+
+            var iterlim = 1000 ;
+            var errthresh = 0.0001;
+            var iterstop = false;
+            var N0 = 0;
+            var N0_old;
+            var dc = dmin;
+
+            for(d=Number(dmin) + 1; d<=dmax; d++){
+                if(E[d-dmin] < 0.5*T[d-dmin]){
+                    dc = d - 1;
+                    break;
+                }
+                dc = d;
+            }
+            N0 = Math.log(1 - (E[dc-dmin]/T[dc-dmin]));
+            if(dc < dmax){
+              N0 += D*Math.log(1 - (E[dc-dmin+1]/T[dc-dmin+1]));
+            }
+            N0 *= -0.5*Q*Math.pow(D,dc);
+
+            var num;
+            var den;
+            var denfactor;
+            var efactor;
+            var temp;
+            var iter=1;
+            while ((iter < iterlim) && !iterstop ){
+              num = 0;
+              den = 0;
+              for(d=dmin; d<=dmax; d++){
+                denfactor = Q*Math.pow(D,d);
+                efactor = Math.exp(-N0/denfactor);
+                num += (T[d-dmin]*efactor - T[d-dmin] + E[d-dmin])/(denfactor*(1 - efactor));
+                den += (-E[d-dmin]*efactor)/Math.pow(denfactor*(1 - efactor),2);
+              }
+
+              N0_old = N0;
+              N0 = N0 - num/den;
+
+              iter++;
+              iterstop = (Math.abs(N0 - N0_old) < errthresh);
+            }
+
+            if (!iterstop){
+              alert("Iterative solution failed to converge. Please check if your data was inputed correctly.");
+            }
+            else{
+              document.getElementById("answer").innerHTML = "Number of Virus Particles = " + Math.round(N0);
+            }
+        }
+    </script>
+
+    
+</body>
+</html>
