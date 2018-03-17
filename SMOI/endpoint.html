@@ -56,38 +56,6 @@
                 input.size = FieldSize;
                 cell.appendChild(input);
 
-                /*for(d=dmin; d<=dmax; d++){
-                    cell = row.insertCell(-1);
-                    var minicontainer = document.createElement("div");
-
-                    var input = document.createElement("input");
-                    input.type = "number";
-                    input.name = "P_" + d + "_" + t;
-                    input.id = "P_" + d + "_" + t;
-                    input.size = FieldSize;
-                    //cell.appendChild(input);
-
-                    var checkcountable = document.createElement("input");
-                    checkcountable.type = "checkbox";
-                    checkcountable.name = "Check_" + d + "_" + t;
-                    checkcountable.id = "Check_" + d + "_" + t;
-                    checkcountable.setAttribute("onclick", "javascript: uncountableDisable(" + d + "," + t + ");");
-                    //checkcountable.onclick = function(){input.disabled = checkcountable.status};
-                    //checkcountable.value = "Uncountable";
-
-                    var label = document.createElement("label");
-                    label.innerHTML = "NC";
-                    label.for = "Check_" + d + "_" + t;
-
-                    minicontainer.appendChild(input);
-                    minicontainer.appendChild(document.createElement("br"));
-                    minicontainer.appendChild(checkcountable);
-                    minicontainer.appendChild(label);
-
-                    cell.appendChild(minicontainer);
-
-                }*/
-
                 
             }
             container.appendChild(datatable);
@@ -113,6 +81,18 @@
             }
         }
 
+        function noDilutionText(dilutionID, textID){
+            //var text = document.getElementById("nodilutiontext");
+            //if (document.getElementById("dmin").value == 0){
+            var text = document.getElementById(textID);
+            if (document.getElementById(dilutionID).value == 0){
+              text.style.display = "inline";
+            }
+            else{
+              text.style.display = "none";
+            }
+        }
+
     </script>
 </head
 <body>
@@ -132,6 +112,7 @@
       </div>
 
       <div id = "main">
+        <p>Please enter the experimental parameters of your assay below. If you change the minimum dilution or maximum dilution, please press the "Update Data Fields" button.</p>
         <table>
           <tr>
             <td>
@@ -160,7 +141,8 @@
               Minimum Dilution Number
             </td>
             <td>
-              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0>
+              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0 onchange="noDilutionText('dmin', 'dminnodilutiontext')">
+              <span id="dminnodilutiontext" style="display:none">  (no dilution)</span>
             </td>
           </tr>
           <tr>
@@ -168,13 +150,14 @@
               Maximum Dilution Number
             </td>
             <td>
-              <input type="number" id="dmax" name="dmax" value="5" size=8 min=0>
+              <input type="number" id="dmax" name="dmax" value="5" size=8 min=0 onchange="noDilutionText('dmax', 'dmaxnodilutiontext')">
+              <span id="dmaxnodilutiontext" style="display:none">  (no dilution)</span>
             </td>
           </tr>
         </table>
         <input type="submit" id="updatefields" name="updatefields" value="Update Fields" onclick="updateFields()">
         <br />
-        <br />
+        <p>For each dilution number, please enter the number of trials and how many of them exhibited a successful cytophathic effect. Press "Solve" for the viral particle count estimate.</p>
         <div id="datafields"></div>
         <br />
         <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">

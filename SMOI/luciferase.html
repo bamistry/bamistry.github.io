@@ -84,6 +84,7 @@
       </div>
 
       <div id = "main">
+        <p>Please enter the experimental parameters of your assay below. If you change the number of trials, please press the "Update Data Fields" button.</p>
         <table>
           <tr>
             <td>
@@ -144,7 +145,7 @@
         </table>
         <input type="submit" id="updatefields" name="updatefields" value="Update Fields" onclick="updateFields()">
         <br />
-        <br />
+        <p>For each trial number, please enter the fluorescence intensity of the luciferase reporter assay. Press "Solve" to estimate the number of infectious units.</p>
         <div id="datafields"></div>
         <br />
         <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">

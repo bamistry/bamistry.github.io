@@ -17,84 +17,6 @@
             while (container.hasChildNodes()) {
                 container.removeChild(container.lastChild);
             }
-            /*for (t=1;t<=T;t++){
-              for (d = dmin; d <=dmax; d++){
-                // Append a node with a random text
-                container.appendChild(document.createTextNode("P_" + d + "_" + t));
-                // Create an <input> element, set its type and name attributes
-                var input = document.createElement("input");
-                input.type = "number";
-                input.name = "P_" + d + "_" + t;
-                input.id = "P_" + d + "_" + t;
-                input.size = FieldSize;
-                container.appendChild(input);
-                // Append a line break 
-                //container.appendChild(document.createElement("br"));
-              }
-              container.appendChild(document.createElement("br"));
-            }*/
-
-            //Table method
-            /*var datacolumn = document.createElement("TABLE");
-            var row = datacolumn.insertRow(-1);
-
-            //Header row
-            var headerCell = document.createElement("TH");
-            headerCell.innerHTML = "";
-            row.appendChild(headerCell);
-
-            for(t=1; t<=T; t++){
-                row = datacolumn.insertRow(-1);
-                var cell = row.insertCell(-1);
-                cell.innerHTML = "Trial " + t;
-            }
-
-                container.appendChild(datacolumn);
-            for(d = dmin; d<=dmax; d++){
-                datacolumn = document.createElement("TABLE");
-                row = datacolumn.insertRow(-1);
-
-                //Header row
-                headerCell = document.createElement("TH");
-                headerCell.innerHTML = "Dil. #" + d;
-                row.appendChild(headerCell);
-
-                for(t=1; t<=T; t++){
-                    row = datacolumn.insertRow(-1);
-                    var cell = row.insertCell(-1);
-
-                    var minicontainer = document.createElement("div");
-
-                    var input = document.createElement("input");
-                    input.type = "number";
-                    input.name = "P_" + d + "_" + t;
-                    input.id = "P_" + d + "_" + t;
-                    input.size = FieldSize;
-                    //cell.appendChild(input);
-
-                    var checkcountable = document.createElement("input");
-                    checkcountable.type = "checkbox";
-                    checkcountable.name = "Check_" + d + "_" + t;
-                    checkcountable.id = "Check_" + d + "_" + t;
-                    //checkcountable.onclick = "uncountableDisable(" + d + "," + t + ")";
-                    checkcountable.onclick = function(){input.disabled = checkcountable.status};
-                    checkcountable.value = "Uncountable";
-
-                    var label = document.createElement("label");
-                    label.innerHTML = "Uncountable";
-                    label.for = "Check_" + d + "_" + t;
-
-                    minicontainer.appendChild(input);
-                    minicontainer.appendChild(document.createElement("br"));
-                    minicontainer.appendChild(checkcountable);
-                    minicontainer.appendChild(label);
-
-                    cell.appendChild(minicontainer);
-
-                }
-
-                container.appendChild(datacolumn);
-            }*/
 
             //Table Method 2
             var datatable = document.createElement("TABLE");
@@ -134,8 +56,6 @@
                     checkcountable.name = "Check_" + d + "_" + t;
                     checkcountable.id = "Check_" + d + "_" + t;
                     checkcountable.setAttribute("onclick", "javascript: uncountableDisable(" + d + "," + t + ");");
-                    //checkcountable.onclick = function(){input.disabled = checkcountable.status};
-                    //checkcountable.value = "Uncountable";
 
                     var label = document.createElement("label");
                     label.innerHTML = "Uncountable";
@@ -179,9 +99,11 @@
             }
         }
 
-        function noDilutionText(){
-            var text = document.getElementById("nodilutiontext");
-            if (document.getElementById("dmin").value == 0){
+        function noDilutionText(dilutionID, textID){
+            //var text = document.getElementById("nodilutiontext");
+            //if (document.getElementById("dmin").value == 0){
+            var text = document.getElementById(textID);
+            if (document.getElementById(dilutionID).value == 0){
               text.style.display = "inline";
             }
             else{
@@ -208,7 +130,7 @@
       </div>
 
       <div id = "main">
-        <p>The plaque assay is performed by applying a solution of viral particles under varying levels of dilution to a monolayer of host cells and counting the number of plaques (lesions of dead cells growing out from an initial infection). Please enter the experimental parameters of your assay below. If you change the minimum dilution, maximu dilution, or number of trials, please press the "Update Data Fields" button.</p>
+        <p>Please enter the experimental parameters of your assay below. If you change the minimum dilution, maximum dilution, or number of trials, please press the "Update Data Fields" button.</p>
         <table>
           <tr>
             <td>
@@ -245,8 +167,8 @@
               Minimum Dilution Number 
             </td>
             <td>
-              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0 onchange="noDilutionText()">
-              <span id="nodilutiontext" style="display:none"> (no dilution)</span>
+              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0 onchange="noDilutionText('dmin', 'dminnodilutiontext')">
+              <span id="dminnodilutiontext" style="display:none">  (no dilution)</span>
             </td>
           </tr>
           <tr>
@@ -254,7 +176,8 @@
               Maximum Dilution Number
             </td>
             <td>
-              <input type="number" id="dmax" name="dmax" value="5" size=8 min=0>
+              <input type="number" id="dmax" name="dmax" value="5" size=8 min=0 onchange="noDilutionText('dmax', 'dmaxnodilutiontext')">
+              <span id="dmaxnodilutiontext" style="display:none">  (no dilution)</span>
             </td>
           </tr>
           <tr>
@@ -268,8 +191,7 @@
         </table>
         <input type="submit" id="updatefields" name="updatefields" value="Update Data Fields" onclick="updateFields()">
         <br />
-        <br />
-        <p>For each dilution number and trial number below, please enter the number of plaques counted. If enough cell death occurs so individual plaques are indistinguishable from each other, then check the "Uncountable" box. Once all data is inputed, please press the "Solve" button.</p>
+        <p>For each dilution and trial number, please enter the number of plaques counted. If plaques are too numerous to count, then check the "Uncountable" box. Press "Solve" for the viral particle count estimate.</p>
         <div id="datafields"></div>
         <br />
         <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">
