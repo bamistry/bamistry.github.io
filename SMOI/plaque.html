@@ -179,6 +179,16 @@
             }
         }
 
+        function noDilutionText(){
+            var text = document.getElementById("nodilutiontext");
+            if (document.getElementById("dmin").value == 0){
+              text.style.display = "inline";
+            }
+            else{
+              text.style.display = "none";
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -198,6 +208,7 @@
       </div>
 
       <div id = "main">
+        <p>The plaque assay is performed by applying a solution of viral particles under varying levels of dilution to a monolayer of host cells and counting the number of plaques (lesions of dead cells growing out from an initial infection). Please enter the experimental parameters of your assay below. If you change the minimum dilution, maximu dilution, or number of trials, please press the "Update Data Fields" button.</p>
         <table>
           <tr>
             <td>
@@ -231,10 +242,11 @@
           </tr>
           <tr>
             <td>
-              Minimum Dilution Number
+              Minimum Dilution Number 
             </td>
             <td>
-              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0>
+              <input type="number" id="dmin" name="dmin" value="1" size=8 min=0 onchange="noDilutionText()">
+              <span id="nodilutiontext" style="display:none"> (no dilution)</span>
             </td>
           </tr>
           <tr>
@@ -257,6 +269,7 @@
         <input type="submit" id="updatefields" name="updatefields" value="Update Data Fields" onclick="updateFields()">
         <br />
         <br />
+        <p>For each dilution number and trial number below, please enter the number of plaques counted. If enough cell death occurs so individual plaques are indistinguishable from each other, then check the "Uncountable" box. Once all data is inputed, please press the "Solve" button.</p>
         <div id="datafields"></div>
         <br />
         <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">
