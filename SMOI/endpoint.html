@@ -157,7 +157,7 @@
         </table>
         <input type="submit" id="updatefields" name="updatefields" value="Update Fields" onclick="updateFields()">
         <br />
-        <p>For each dilution number, please enter the number of trials and how many of them exhibited a successful cytophathic effect. Press "Solve" for the viral particle count estimate.</p>
+        <p>For each dilution number, please enter the number of trials and how many of them exhibited a successful cytophathic effect. Press "Solve" for the viral particle count estimate and 95% confidence interval..</p>
         <div id="datafields"></div>
         <br />
         <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">
@@ -269,12 +269,41 @@
               iterstop = (Math.abs(N0 - N0_old) < errthresh);
             }
 
+            var FIM = 0;
+            var StandardErr = 0;
+            for(d=dmin; d<=dmax; d++){
+              FIM += T[d-dmin]*Math.exp(-N0/(Q*Math.pow(D,d)))/(Math.pow(D,2*d)*(1 - Math.exp(-N0/(Q*Math.pow(D,d)))));
+            }
+            FIM = FIM/(Math.pow(Q,2));
+            StandardErr = Math.sqrt(1/FIM);
+            ConfInterval = 1.96*StandardErr;
+
+            var ExpN0 = Math.round(Math.log10(N0));
+            var ExpConf = Math.round(Math.log10(ConfInterval));
+            N0 = Math.round(N0);
+            ConfInterval = Math.round(ConfInterval);
+            if(N0 >= 1000){
+              N0 = N0*Math.pow(10,-ExpN0);
+              N0 = N0.toPrecision(3) + " x 10<sup>" + ExpN0 + "</sup>";
+            }
+            if(ConfInterval >= 1000){
+              ConfInterval = ConfInterval*Math.pow(10,-ExpConf);
+              ConfInterval = ConfInterval.toPrecision(3) + " x 10<sup>" + ExpConf + "</sup>";
+            }
+
+
             if (!iterstop){
               alert("Iterative solution failed to converge. Please check if your data was inputed correctly.");
             }
             else{
-              document.getElementById("answer").innerHTML = "Number of Virus Particles = " + Math.round(N0);
+              document.getElementById("answer").innerHTML = "<font size='5' color='red'>Number of Virus Particles = " + N0 + " &plusmn; " + ConfInterval + "</font>";
             }
+            /*if (!iterstop){
+              alert("Iterative solution failed to converge. Please check if your data was inputed correctly.");
+            }
+            else{
+              document.getElementById("answer").innerHTML = "Number of Virus Particles = " + Math.round(N0);
+            }*/
         }
     </script>
 

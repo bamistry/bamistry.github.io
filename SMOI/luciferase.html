@@ -145,7 +145,7 @@
         </table>
         <input type="submit" id="updatefields" name="updatefields" value="Update Fields" onclick="updateFields()">
         <br />
-        <p>For each trial number, please enter the fluorescence intensity of the luciferase reporter assay. Press "Solve" to estimate the number of infectious units.</p>
+        <p>For each trial number, please enter the fluorescence intensity of the luciferase reporter assay. Press "Solve" to estimate the ratio of infectious units to host cells and 95% confidence interval.</p>
         <div id="datafields"></div>
         <br />
         <input type="submit" id="calculateN0" name="calculateN0" value="Solve" onclick="calculateN0()">
@@ -171,6 +171,7 @@
             var K = Number(document.getElementById("Kconstant").value);
             var h = Number(document.getElementById("hill").value);
             var T = Number(document.getElementById("trials").value); 
+            var solutionPrecision = 3;
 
             if((N0 < 0) || (M < 0) || (L0 < 0) || (fmax < 0) || (K < 0) || (h < 0) || (T < 0)){
               alert("Error: Only positive entries allowed.");
@@ -239,11 +240,15 @@
             var den;
             var denfactor;
             var efactor;
+            var varCalcNum;
+            var varCalcDen;
             var temp;
             var iter=1;
             while ((iter < iterlim) && !iterstop ){
               num = 0;
               den = 0;
+              varCalcNum =  0;
+              varCalcDen = 0;
               var numReachedMax = false;
               var numThresh = 0.00001;
               var numtemp1 = 0;
@@ -253,6 +258,8 @@
                 numtemp2 = Math.pow(r,h)*Math.pow(mu,r)/((K + Math.pow(r,h))*myFactorial(r));
                 num += numtemp2;
                 den += Math.pow(r,h)*Math.pow(mu,r - 1)*(mu - r)/((K + Math.pow(r,h))*myFactorial(r));
+                varCalcNum += Math.pow(r,2*h)*Math.pow(mu,r)/(Math.pow(K + Math.pow(r,h),2)*myFactorial(r));
+                varCalcDen += Math.pow(r,h)*Math.pow(mu,r-1)*(r - mu)/((K + Math.pow(r,h))*myFactorial(r));
 
                 if (!numReachedMax && (numtemp2 < numtemp1)){
                   numReachedMax = true;
@@ -272,12 +279,15 @@
               iterstop = (Math.abs(mu - mu_old) < errthresh) || isNaN(mu);
             }
 
+            var StandardErr = Math.sqrt(Math.exp(mu)*varCalcNum/(M*Math.pow(varCalcDen,2)));
+            var ConfInterval = 1.96*StandardErr;
+
             var N = mu*M;
             if (!iterstop || isNaN(mu)){
               alert("Iterative solution failed to converge. Please check if your data was inputed correctly.");
             }
             else{
-              document.getElementById("answer").innerHTML = "Number of Infectious Units = " + Math.round(N);
+              document.getElementById("answer").innerHTML = "<font size='5' color='red'>Ratio of Infectious Units to Host Cells= " + mu.toPrecision(solutionPrecision) + " &plusmn; " + ConfInterval.toPrecision(solutionPrecision) + "</font>";
             }
         }
 
