@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SHA7 Test</title>
+    <link rel="stylesheet" type="text/css" href="../SMOI/style.css?v5" />
+
+    <script type="text/javascript">
+      function SHA7Check(HashNum){
+
+            var Guess = document.getElementById("Hash" + HashNum.toString()).value;
+            var Correct = false;
+
+            var Hashes = [21,102,40,68,22,78,34,84,89,96];
+
+            if( Guess == Hashes[HashNum-1]){
+              document.getElementById("CheckResult" + HashNum.toString()).innerHTML = "<font size='5' color='red'>Correct!</font>";
+            }
+        
+        }
+    </script>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1>SHA7 Test</h1>
+    </div>
+    <div id="content">
+      <div id = "nav">
+        <h3>Options</h3>
+        <ul>
+          <li><a href="SHA7.html">Reset</a></li>
+        </ul>
+      </div>
+
+      <div id = "main">
+        Hash 1:
+        <input type="number" id="Hash1" name="Hash1" size=8>
+        <input type="submit" id="Check1" name="Check1" value="Check" onclick="SHA7Check(1)">
+        <p id="CheckResult1"></p>
+        <br />
+        <br />
+        <br />
+        Hash 2:
+        <input type="number" id="Hash2" name="Hash2" size=8>
+        <input type="submit" id="Check2" name="Check2" value="Check" onclick="SHA7Check(2)">
+        <p id="CheckResult2"></p>
+        <br />
+        <br />
+        <br />
+        Hash 3:
+        <input type="number" id="Hash3" name="Hash3" size=8>
+        <input type="submit" id="Check3" name="Check3" value="Check" onclick="SHA7Check(3)">
+        <p id="CheckResult3"></p>
+        <br />
+        <br />
+        <br />
+        Hash 4:
+        <input type="number" id="Hash4" name="Hash4" size=8>
+        <input type="submit" id="Check4" name="Check4" value="Check" onclick="SHA7Check(4)">
+        <p id="CheckResult4"></p>
+        <br />
+        <br />
+        <br />
+        Hash 5:
+        <input type="number" id="Hash5" name="Hash5" size=8>
+        <input type="submit" id="Check5" name="Check5" value="Check" onclick="SHA7Check(5)">
+        <p id="CheckResult5"></p>
+        <br />
+        <br />
+        <br />
+        Hash 6:
+        <input type="number" id="Hash6" name="Hash6" size=8>
+        <input type="submit" id="Check6" name="Check6" value="Check" onclick="SHA7Check(6)">
+        <p id="CheckResult6"></p>
+        <br />
+        <br />
+        <br />
+        Hash 7:
+        <input type="number" id="Hash7" name="Hash7" size=8>
+        <input type="submit" id="Check7" name="Check7" value="Check" onclick="SHA7Check(7)">
+        <p id="CheckResult7"></p>
+        <br />
+        <br />
+        <br />
+        Hash 8:
+        <input type="number" id="Hash8" name="Hash8" size=8>
+        <input type="submit" id="Check8" name="Check8" value="Check" onclick="SHA7Check(8)">
+        <p id="CheckResult8"></p>
+        <br />
+        <br />
+        <br />
+        Hash 9:
+        <input type="number" id="Hash9" name="Hash9" size=8>
+        <input type="submit" id="Check9" name="Check9" value="Check" onclick="SHA7Check(9)">
+        <p id="CheckResult9"></p>
+        <br />
+        <br />
+        <br />
+        Hash 10:
+        <input type="number" id="Hash10" name="Hash10" size=8>
+        <input type="submit" id="Check10" name="Check10" value="Check" onclick="SHA7Check(10)">
+        <p id="CheckResult10"></p>
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+    <div id="footer">
+      Contact: bamistry at ucla dot edu
+    </div>
+  </div>
+
+    
+
+    
+</body>
+</html>
