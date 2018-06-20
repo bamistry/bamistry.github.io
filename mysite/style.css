@@ -77,17 +77,23 @@ input[disabled] {
 	padding: 10px 10px 10px 10px;
 }
 
-#nav{
-	align-items: center;
+#nav_container{
 	text-align: center;
+	background-color: #110d02;
 }
 
 #nav .selected{
 	font-weight: bold;
 }
 
+#nav{
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 #nav ul {
+	font-size: 200%;
     list-style-type: none;
     margin: 0;
     padding: 0;
