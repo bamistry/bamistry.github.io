@@ -1,5 +1,5 @@
 body{
-	background-color: #EEE;
+	background-color: #d19214;
 	font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -36,7 +36,7 @@ input[disabled] {
 }
 
 #header{
-	background-color: #66CCFF;
+	background-color: #fce8bf;
 	text-align: center;
 	padding: 10px;
 }
@@ -86,7 +86,7 @@ th{
 #footer{
 	clear: both;
 	padding: 10px;
-	background-color: #999999;
+	background-color: #725722;
 	color: white;
 	text-align: right;
 }
