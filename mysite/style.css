@@ -1,6 +1,11 @@
 body{
 	background-color: white;
-	font-family: SignPainter, Courier New, Arial, sans-serif;
+	font-family: 'Satisfy', cursive;
+	font-family: 'Monda', sans-serif;
+	font-family: 'Marck Script', cursive;
+	font-family: 'Architects Daughter', cursive;
+	font-family: 'Yellowtail', cursive;
+	font-family: 'Damion', cursive;
 	padding: 0px;
 	margin: 0px;
 }
@@ -47,7 +52,7 @@ input[disabled] {
 }
 
 #upper_container h1{
-	font-size: 550%;
+	font-size: 450%;
 }
 
 #container{
