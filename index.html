@@ -18,9 +18,10 @@
     <div id = "nav_container">
       <div id = "nav">
         <ul>
+          <li><a class="selected" onclick="myChangeContent(0)">Home</a></li>
           <li><a href="mysite/Bhaven_Mistry_CV_2018_06.pdf">My CV</a></li>
-          <li><a>Research</a></li>
-          <li><a>Teaching</a></li>
+          <li><a onclick="myChangeContent(1)">Research</a></li>
+          <li><a onclick="myChangeContent(2)">Teaching</a></li>
           <li><a href="SMOI/index.html">Virology Tools</a></li>
         </ul>
       </div>
@@ -30,8 +31,15 @@
         <br />
         <br />
         <br />
-        I'm still constructing this site, but you can find my CV in the toolbar!<br /> 
-    
+        <div id="home">
+          I'm still constructing this site, but you can find my CV in the toolbar!<br />
+        </div> 
+        <div id="research" style="display:none;">
+          This is about my research.
+        </div>
+        <div id="teaching" style="display:none;">
+          This is about my teaching.
+        </div>
       <div id="footer">
         Contact: bamistry at ucla dot edu
       </div>
@@ -39,6 +47,28 @@
     
   </div>
 
+<script type="text/javascript">
+  function myChangeContent(indicator) {
+   var homecontainer = document.getElementById("home"); 
+   var researchcontainer = document.getElementById("research");
+   var teachingcontainer = document.getElementById("teaching");
+
+   homecontainer.style.display = "none";
+   researchcontainer.style.display = "none";
+   teachingcontainer.style.display = "none";
+   switch(indicator){
+    case 0:
+      homecontainer.style.display = "block";
+      break;
+    case 1:
+      researchcontainer.style.display = "block";
+      break;
+    case 2:
+      teachingcontainer.style.display = "block";
+      break;
+   }
+}
+</script>
 
     
 </body>
