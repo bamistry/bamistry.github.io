@@ -4,6 +4,7 @@
     <title>Bhaven's Website</title>
     <link rel="stylesheet" type="text/css" href="mysite/style.css?v5" />
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Damion|Marck+Script|Monda|Satisfy|Yellowtail" rel="stylesheet">
+    <link rel="icon" href="mysite/BAMIcon.png">
 </head>
 <body>
   
@@ -15,35 +16,59 @@
         <h1 align="right">Scroll<br /> down!</h1>
       </div>
     </div>
-    <div id = "nav_container">
+      <div id = "nav_container">
       <div id = "nav">
         <ul>
           <li><a class="selected" onclick="myChangeContent(0)">Home</a></li>
           <li><a href="mysite/Bhaven_Mistry_CV_2018_06.pdf">My CV</a></li>
           <li><a onclick="myChangeContent(1)">Research</a></li>
           <li><a onclick="myChangeContent(2)">Teaching</a></li>
-          <li><a href="SMOI/index.html">Virology Tools</a></li>
+          <li><a onclick="myChangeContent(3)">Webtools</a></li>
         </ul>
       </div>
       </div>
-    <div id="container">
+      <div id="lower_body">
+      <div id="container">
         <br />
         <br />
         <br />
         <br />
         <div id="home">
-          I'm still constructing this site, but you can find my CV in the toolbar!<br />
+          <img src="mysite/Avatar.jpg" alt="Avatar" class="center"><br />
+          Hi! I'm a mathematician specializing in mathematical biology and stochastic physics. I'm also interested in novel methods of mathematical education for non-STEM related students. And I'm a level 3.0 tennis player (so, needs improvement)!<br />
+          <br />
+          If you're a biologist here to use one of our models to quantify your assay results, check out Webtools above!<br />
+          <br />
+          BTW, the picture and sculpture of an HIV virus above is by Luke Jerram and you can find more of his work <a href="https://www.lukejerram.com/glass/">here.</a>
         </div> 
         <div id="research" style="display:none;">
-          This is about my research.
+          HIV Infection: I'm interested in quantitatively modeling the dynamics of HIV infection and treatment. Specific work includes kinetic models of receptor/coreceptor mediated viral entry, quantifying fusion inhibitor efficacy, and the stochasticity of HIV latency and recovery under anti-viral treatment.<br />
+          <br />
+          Physics of Biological Assays: Plaque assay, endpoint dilution assay, luciferase reporter assay, hemaglutination assay, FACS assay.<br />
+          <br />
+          Emergence: Biological swarms, molecular evolution (SELEX).<br />
+          <br />
+          Polymer Physics: X-chromosome inactivation, membrane pore transport.<br />
+          <br />
+          <hr>
+          <center>Publications</center><br />
+          <ol>
+          <li>Mistry, B.A., D’Orsogna, M.R., Chou, T. The Effects of Statistical Multiplicity of Infection on Virus Quantification and Infectivity Assays. Biophysical Journal. 114(12):2974–2985. 2018.(<a href="https://www.cell.com/biophysj/fulltext/S0006-3495(18)30575-7">link</a>)</li>
+
+          <li>Mistry, B., D’Orsogna, M.R., Webb, N.E., Lee, B., and Chou, T. Quantifying Sensitivity of HIV-1 Viral Entry to Receptor and Coreceptor Expression through Kinetic Models. Journal of Physical Chemistry B. 120(26):6189–6199. 2016.(<a href="https://pubs.acs.org/doi/abs/10.1021/acs.jpcb.6b02102">link</a>)</li>
+          </ol>
         </div>
         <div id="teaching" style="display:none;">
           This is about my teaching.
         </div>
-      <div id="footer">
+        <div id="webtools" style="display:none;">
+          <a href="SMOI/index.html">Virology Tools:</a> We've provided a web interface for experimentalists to input their data for plaque, endpoint dilution, or luciferase reporter assays.
+        </div>
+    </div>
+    <div id="footer">
         Contact: bamistry at ucla dot edu
       </div>
-    </div>
+  </div>
     
   </div>
 
@@ -52,10 +77,12 @@
    var homecontainer = document.getElementById("home"); 
    var researchcontainer = document.getElementById("research");
    var teachingcontainer = document.getElementById("teaching");
+   var webtoolscontainer = document.getElementById("webtools");
 
    homecontainer.style.display = "none";
    researchcontainer.style.display = "none";
    teachingcontainer.style.display = "none";
+   webtoolscontainer.style.display = "none";
    switch(indicator){
     case 0:
       homecontainer.style.display = "block";
@@ -65,6 +92,9 @@
       break;
     case 2:
       teachingcontainer.style.display = "block";
+      break;
+    case 3:
+      webtoolscontainer.style.display = "block";
       break;
    }
 }

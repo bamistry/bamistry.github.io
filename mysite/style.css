@@ -1,5 +1,5 @@
 body{
-	background-color: white;
+	background-color: #110d02;
 	font-family: 'Satisfy', cursive;
 	font-family: 'Monda', sans-serif;
 	font-family: 'Marck Script', cursive;
@@ -21,6 +21,15 @@ input[type=number]{
 
 label{
 	font-size: 70%;
+}
+
+#lower_body{
+	background-color: white;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 0px;
+	overflow: auto;
 }
 
 #datafields input[type=number]{
@@ -61,6 +70,7 @@ input[disabled] {
 	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
+	height: 600px;
 }
 
 #header{
@@ -93,7 +103,7 @@ input[disabled] {
 }
 
 #nav{
-	width: 60%;
+	width: 47%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -144,6 +154,16 @@ td {
 th{
 	text-align: center;
 	padding: 5px;
+}
+
+#home img {
+    border-radius: 50%;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #footer{
