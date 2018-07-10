@@ -10,7 +10,7 @@ body{
 	margin: 0px;
 }
 
-a{
+#nav a{
 	text-decoration: none;
 	cursor:pointer;
 }
@@ -30,6 +30,8 @@ label{
 	margin-right: 0px;
 	padding: 0px;
 	overflow: auto;
+	font-family: 'Courgette', cursive;
+	font-family: 'Kalam', cursive;
 }
 
 #datafields input[type=number]{
@@ -70,7 +72,7 @@ input[disabled] {
 	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 600px;
+	min-height: 400px;
 }
 
 #header{
