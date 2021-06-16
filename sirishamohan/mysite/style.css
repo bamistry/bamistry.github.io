@@ -1,5 +1,5 @@
 body{
-	background-color: #110d02;
+	background-color: #8F5BC4;
 	font-family: 'Damion', cursive;
 	padding: 0px;
 	margin: 0px;
@@ -99,13 +99,13 @@ input[disabled] {
 }
 
 #nav{
-	width: 750px;
+	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 #nav ul {
-	font-size: 150%;
+	font-size: 200%;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -126,7 +126,7 @@ input[disabled] {
 }
 
 #nav li a:hover {
-    background-color: #271e06;
+    background-color: #C7A5EA;
 }
 
 #main{
