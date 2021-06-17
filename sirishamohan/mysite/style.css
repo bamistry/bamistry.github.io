@@ -169,3 +169,12 @@ th{
 	color: white;
 	text-align: right;
 }
+
+#title{
+	background-color: white;
+	color: black;
+	text-align: center;
+	width: 600px;
+	height: 400px;
+	padding: 20px;
+}
