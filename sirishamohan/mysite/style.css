@@ -53,6 +53,8 @@ input[disabled] {
 	width: 65%;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
 	text-align: center;
 	background-color: white;
 
