@@ -60,7 +60,7 @@ input[disabled] {
 	background-color: white;
 	background-image: url("ornate-curly-border.jpeg");
 	background-repeat: no-repeat;
-  	background-size: contain;
+  	background-size: cover;
 }
 
 #upper_container h1{
@@ -81,14 +81,14 @@ input[disabled] {
 	margin-top: 0px;
 	margin-left: 0px;
 	margin-right: 0px;
-	padding: 0px;
+	padding: 20px;
 	overflow: auto;
 	background-image: url("Modern-white-floral.png");
 	background-repeat: no-repeat;
-    background-position: center top;
-    background-size:cover;
-    color: black;
-    height: 1000px;
+    	background-position: center top;
+    	background-size:cover;
+    	color: black;
+    	height: 700px;
 }
 
 #content{
