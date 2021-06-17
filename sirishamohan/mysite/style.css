@@ -70,9 +70,9 @@ input[disabled] {
 	margin-bottom: auto;
 	text-align: center;
 	background-color: white;
-	background-image: url("ornate-curly-border.jpeg");
+	/*background-image: url("ornate-curly-border.jpeg");
 	background-repeat: no-repeat;
-  	background-size: cover;
+  	background-size: cover;*/
 }
 
 #upper_container h1{
