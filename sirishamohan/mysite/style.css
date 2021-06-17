@@ -50,10 +50,11 @@ input[disabled] {
 }
 
 #upper_container{
-	width: 95%;
+	width: 65%;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: left;
+	text-align: center;
+	background-color: white;
 
 }
 
